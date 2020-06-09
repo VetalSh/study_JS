@@ -4,26 +4,10 @@ body {
 .container {
   max-width: 1200px;
   margin: auto;
-  border: 1px solid #0050b3;
+  /* border: 1px solid #0050b3; */
 }
 .header-title {
   padding: 20px 30px;
-}
-.button {
-  background-color: #f5222d;
-  color: #fff;
-  border: none; 
-  border-radius: 20px;
-  padding: 8px 16px;
-  margin: 10px 20px;
-}
-button:focus {
-  outline: none;
-  box-shadow: 0 0 0 3px #5bafe7;
-  text-align: center; 
-}
-button:active {
-  background-color: #6ebaec;  
 }
 .description {
   margin: 10px;
