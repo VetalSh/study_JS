@@ -1,61 +1,43 @@
 'use strict';
 
-// let car = {
-//   doors: 4,
-//   turbocharging: false,
-//   ride: function() {
-//     console.log('Car ride');
-//   }
-// };
-
-// let newCar = Object.create(car);
-
-// newCar.model = 'mazda 3';
-
-// console.log(newCar.doors);
-// console.log(newCar.hasOwnProperty('model'));
-// console.log(newCar.__proto__.hasOwnProperty('doors'));
-// console.log(car.isPrototypeOf(newCar));
-
-function Car(brand, model, options) {
-  this.brand = brand;
-  this.model = model;
-  options = options || {};
-  this.color = options.color;
-  this.transmission = options.transmission;
-}
-
-Car.prototype.ride = function() {
-  console.log(this.brand + ' ' + this.model + ' is ride!');
-}
-
-let car1 = new Car('Mazda', '3', {color: 'blue'});
-console.log('car1: ', car1);
-let car2 = new Car('VAZ', 'Niva', {ABS: false});
-console.log('car2: ', car2);
-
-car1.ride();
-car2.ride();
-
-console.log(Car.prototype.isPrototypeOf(car1));
-console.log(car2 instanceof Car);
-
-console.log(car1.ride === car2.ride);
-console.log('car1: ', car1);
-
-function DomElement(selector) {
+function DomElement(selector, height, width, bg, fontSize) {
   this.selector = selector;
-  this.height;
-  this.width;
-  this.bg;
-  this.fontSize;
+  this.height = height;
+  this.width = width;
+  this.bg = bg;
+  this.fontSize = fontSize;
 }
 
 DomElement.prototype.createElem = function() {
-  console.log('createElem: ', this.selector);
+  let newElem,  
+      textElem = prompt('Введите текст элемента: ');
+
+  if (this.selector.charAt(0) === '.') {
+    newElem = document.createElement('div');
+    let classValue = this.selector.slice(1);
+    newElem.classList = classValue;
+    newElem.innerHTML = 'создаем div с классом ' + classValue + ' с введенным текстом: ' + textElem;
+  } else if (this.selector.charAt(0) === '#') {
+    newElem = document.createElement('p');
+    let idValue = this.selector.slice(1);
+    newElem.id = idValue;
+    newElem.innerHTML = 'создаем параграф с id ' + idValue + ' с введенным текстом: ' + textElem;
+  } else {
+    console.log('Ошибка!!! selector прописан не правильно!!!');
+  }
+
+  newElem.style.cssText = `
+    height: ${this.height}px;
+    width: ${this.width}px;
+    background-color: ${this.bg};
+    font-size: ${this.fontSize}px;
+  `;
+
+  document.body.append(newElem);  
 };
 
-let elem1 = new DomElement();
+let elem1 = new DomElement('.header', 50, 500, 'red', 20),
+    elem2 = new DomElement('#description', 50, 1000, 'yellow', 14);
 
 elem1.createElem();
-
+elem2.createElem();
