@@ -315,19 +315,87 @@
 //     .add('mazda');
 // console.log(cars);
 // Можно добавлять при создании массива
-const cars = new Set(['Mazda', 'Volvo', 'BMW']);
-console.log(cars);
-cars.forEach((elem) => {
-  console.log(elem);
+// const cars = new Set(['Mazda', 'Volvo', 'BMW']);
+// console.log(cars);
+// cars.forEach((elem) => {
+//   console.log(elem);
+// });
+// // Применяем деструктуризацию
+// const [car1, car2] = cars;
+// console.log('car1: ', car1);
+// console.log('car2: ', car2);
+// // Переводим коллекцию в массив с помощью спред оператора
+// console.log([...cars]);
+// // Объединение коллекций
+// const newCars = new Set(['Niva', 'Toyota', 'Volvo']);
+// const allCars = new Set([...cars, ...newCars]);
+// console.log('allCars: ', allCars);
+// // Если значение добавляется, то в новую коллекция оно пропишеться только один раз
+
+// Задание 1
+// const myLesson = new Set ([
+//   {lesson: 1, type: 'basic', points: 2},
+//   {lesson: 2, type: 'additional', points: 4},
+//   {lesson: 3, type: 'basic', points: 6},
+//   {lesson: 4, type: 'additional', points: 3},
+//   {lesson: 5, type: 'basic', points: 4},
+//   {lesson: 6, type: 'basic', points: 2},
+//   {lesson: 7, type: 'additional', points: 2},
+//   {lesson: 8, type: 'basic', points: 6},
+//   {lesson: 9, type: 'basic', points: 4},
+//   {lesson: 10, type: 'basic', points: 6},
+//   {lesson: 11, type: 'additional', points: 5}, 
+//   {lesson: 12, type: 'basic', points: 2}, 
+//   {lesson: 13, type: 'additional', points: 2}, 
+//   {lesson: 14, type: 'basic', points: 4},
+//   {lesson: 15, type: 'additional', points: 1},
+//   {lesson: 16, type: 'additional', points: 7},
+// ]);
+
+// myLesson.forEach((elem) => {
+//   if (elem.type === 'additional') {
+//     // Удаляем все объекты с типом additional
+//     myLesson.delete(elem);
+//   } else if (elem.type === 'basic') {
+//     // для basic очки уменьшаем в двое
+//     elem.points /= 2;
+//   }
+// });
+// console.log(myLesson);
+
+// Задание 2
+const myLesson = [
+  {lesson: 1, type: 'basic', points: 2},
+  {lesson: 2, type: 'additional', points: 4},
+  {lesson: 3, type: 'basic', points: 6},
+  {lesson: 4, type: 'additional', points: 3},
+  {lesson: 5, type: 'basic', points: 4},
+  {lesson: 6, type: 'basic', points: 2},
+  {lesson: 7, type: 'additional', points: 2},
+  {lesson: 8, type: 'basic', points: 6},
+  {lesson: 9, type: 'basic', points: 4},
+  {lesson: 10, type: 'basic', points: 6},
+  {lesson: 11, type: 'additional', points: 5}, 
+  {lesson: 12, type: 'basic', points: 2}, 
+  {lesson: 13, type: 'additional', points: 2}, 
+  {lesson: 14, type: 'basic', points: 4},
+  {lesson: 15, type: 'additional', points: 1},
+  {lesson: 16, type: 'additional', points: 7},
+];
+
+console.log(myLesson);
+// Создаем коллекцию
+const myLesson2 = new Set ([...myLesson]);
+
+myLesson2.forEach((elem) => {
+  if (elem.type === 'additional') {
+    // Удаляем все объекты с типом additional
+    myLesson2.delete(elem);
+  } else if (elem.type === 'basic') {
+    // для basic очки уменьшаем в двое
+    elem.points /= 2;
+  }
 });
-// Применяем деструктуризацию
-const [car1, car2] = cars;
-console.log('car1: ', car1);
-console.log('car2: ', car2);
-// Переводим коллекцию в массив с помощью спред оператора
-console.log([...cars]);
-// Объединение коллекций
-const newCars = new Set(['Niva', 'Toyota', 'Volvo']);
-const allCars = new Set([...cars, ...newCars]);
-console.log('allCars: ', allCars);
-// Если значение добавляется, то в новую коллекция оно пропишеться только один раз
+// Переводим коллекцию снова в массив
+const newArr = [...myLesson2];
+console.log('newArr: ', newArr);
