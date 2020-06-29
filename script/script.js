@@ -1,401 +1,132 @@
 'use strict';
 
-// Использования rest-параметра при работе с массивом элементов
-// function test(a, b, c, ...arr) {
-//   // const arg = Array.prototype.slice.call(arguments);
-//   // console.log('arg: ', arg);
-//   console.log(a, b, c);
-//   console.log(arr);
+const number = [54, 20, 80, -35, 32, 29, 15],
+      names = ['vladiMir', 'Mark', 'Logan', 'Victor', 'maks', 'Kate', 'Alex'],
+      mix = ['Glo', 25, true, 'Academy', '15', -2, null],
+      badNum = [45, 20, 74, -35, 'hi', 32, 29, 5];
+
+// // Перебор массива с помощью цикла for
+// for ( let i = 0; i < mix.length; i++) {
+//   console.log(mix[i]);
 // }
-
-// test('red', 5, 12, 'black', [], true, 9);
-
-// const arr = ['red', 5, 12],
-//       arr2 = ['black', true];
-
-// function test(a, b, c, d, e, f) {
-//   console.log(a, b, c);
-//   console.log(d, e, f);
+// // Перебор массива с помощью цикла for in (Больше подходит для объектовб чем для массивов)
+// for (let index in mix) {
+//   console.log(mix[index]);
 // }
-
-// Использование spread-оператора
-// test(arr);
-// test(arr[0], arr[1], arr[2]);
-// test(...arr, 50, ...arr2);
-
-// const arr = ['red', 5, 12],
-//       arr2 = ['black', true];
-
-// const arr3 = [1, ...arr, 55, ...arr2, 'hi'];
-// console.log('arr3: ', arr3);
-
-// Пример преобразования коллекции элементов в массив используя spread-оператор
-// const allImg = document.querySelectorAll('img');
-// console.log(allImg);
-// const newImg = [...allImg];
-// console.log(allImg);
-
-// Деструктуризация
-// const car = {
-//   brand: 'mazda',
-//   model: 3,
-//   color: 'red'
-// };
-
-// // const brand = car.brand,
-// //       model = car.model,
-// //       color = car.color;
-// // console.log(brand, model, color);
-
-// // Пример деструктуризации объекта
-// const {brand, model, color} = car;
-// console.log(brand, model, color);
-
-// const car = {
-//   brand: 'mazda',
-//   model: 3,
-//   options: {
-//     color: 'red',
-//     abs: true
-//   }  
-// };
-
-// const {options:{color, abs}} = car;
-// console.log(color, abs);
-// Указываем переменным собственные имена
-// const {options:{color : carColor, abs : carABS}} = car;
-// console.log(carColor, carABS);
-
-// Пример добавления своих свойств в объект
-// const car = {
-//   brand: 'mazda',
-// };
-
-// const {brand, model = 6} = car;
-// console.log(brand, model);
-// // С вложенными свойствами немного сложнее
-// const {options: {color = 'red'} = {}} = car;
-// console.log(color);
-
-// const createCar = (car) => {
-//   console.log(`
-//   Запущено производство автомобиля ${car.brand} ${car.model}
-//   цвет кузова: ${car.color}
-//   цвет салона: ${car.colorInt}`);
-// };
-
-// createCar({
-//   brand: 'mazda',
-//   model: 3,
-//   color: 'blue',
-//   colorInt: 'black'
-// });
-
-// const createCar = ({brand = 'bmw', model = 6, color = 'black', colorInt}) => {
-//   console.log(`
-//   Запущено производство автомобиля ${brand} ${model}
-//   цвет кузова: ${color}
-//   цвет салона: ${colorInt}`);
-// };
-// createCar({
-//   model: 3,
-//   colorInt: 'black'
-// });
-
-// const createCar = ({brand = 'bmw', model = 6, color = 'black', colorInt} = {}) => {
-//   console.log(`
-//   Запущено производство автомобиля ${brand} ${model}
-//   цвет кузова: ${color}`);
-// };
-// createCar();
-
-// const car = {
-//   brand: 'mazda',
-//   model: 3,
-//   options: {
-//     color: 'red',
-//     abs: true
-//   }  
-// };
-// const {brand, ...options} = car;
-// console.log(options);
-
-// const cars = ['VAZ', 'mazda', 'BMW', 'audi', 'mercedes'];
-// const [,a,, b, c] = cars;
-// console.log(a);
-// console.log(b);
-// console.log(c);
-
-// const cars = [['VAZ', 'mazda'], ['BMW', 'audi']];
-// const [[a, b], [...c], e = 'opel'] = cars;
-// console.log(a);
-// console.log(b);
-// console.log(c);
-// console.log(e);
-
-// const carsModel = {
-//   brand: 'Volvo',
-//   models: {
-//     sedan: ['s60', 's90'],
-//     cross: ['v60', 'v90']
-//   }
-// };
-// const {models: {sedan: [s1, s2], cross: [c1, c2]}} = carsModel;
-// console.log(s1, s2, c1, c2);
-
-// Старый вариант присваивания объекту заначений переменных
-// const car = 'Niva',
-//       cycle = 'bmx',
-//       bike = 'honda';
-// const transport = {
-//   car: car,
-//   cycle: cycle,
-//   bike: bike,
-//   ride: function() {
-//     console.log('Go!');
-//   }
-// };
-// console.log(transport);
-
-// Новый вариант
-// const car = 'Niva',
-//       cycle = 'bmx',
-//       bike = 'honda';
-// const transport = {car, cycle, bike, ride() {
-//   console.log("Go!");
-// }};
-// console.log(transport);
-// console.log(transport.ride());
-
-// Метод assing
-// const transport = {
-//   bike: 'honda',
-//   car: 'bentley',
-//   cycle: 'bmx'
-// };
-// const newTransport = {
-//   bike:'suzuki',
-//   quadBike: 'polaris' 
-// };
-// // Object.assign(transport, newTransport);
-// // console.log(transport);
-// const newTransport2 = {
-//   bike: 'ducati'
-// };
-// const currentTransport = Object.assign({}, transport, newTransport, newTransport2);
-// console.log('currentTransport: ', currentTransport);
-// // Создание копии объекта
-// const currentTransport2 = Object.assign({}, transport);
-// console.log('currentTransport2: ', currentTransport2);
-// const ship = 'Titanic';
-// const currentTransport3 = {...transport, ...newTransport, ...newTransport2, ship};
-// console.log('currentTransport3: ', currentTransport3);
-// // Также есть возможность добавлять методы прямо в создающийся объект
-// const currentTransport4 = {...transport, ...newTransport, ride(){console.log('Go!');}};
-// console.log('currentTransport4: ', currentTransport4);
-// currentTransport4.ride();
-
-// Коллекции Map и Set
-// const obj = {
-//   a: 5,
-//   b: 10
-// };
-// console.log(obj);
-// // Определить длиннну объекта напрямую нельзя, прииходиться использовать костыль
-// console.log(Object.keys(obj).length);
-
-// // Для облегчения работы с объектом можно использовать класс Map
-// // Ключом может быть не только строка, но и любое произвольное значение
-// // const map = new Map();
-// // Данные по умолчанию можно передавать в коллекцию в виде массива
-// const map = new Map([
-//   [2020, 'sunner'],
-//   ['joker', 1]
-// ]);
-// // map.set('car', {brand: 'mazda', model: 3});
-// // map.set(777, 'три топора');
-// // map.set(null, 'даже так');
-// // map.set(NaN, 'Ух ты');
-// // map.set(undefined, 'неожиданно');
-// // const obj = {
-// //   name: 'Vetal',
-// //   age: 30
-// // };
-// // map.set(obj, 123);
-// // const func = () => {
-// //   console.log('Hello');
-// // };
-// // map.set(func, 'awesome');
-// // map.set(false, true);
-
-// // console.log(map);
-// // Методы set можно вызывать  друг за другом
-// map.set('car', {brand: 'mazda', model: 3})
-//     .set(777, 'три топора')
-//     .set(null, 'даже так')
-//     .set(NaN, 'Ух ты')
-//     .set(undefined, 'неожиданно');
-// const obj = {
-//   name: 'Vetal',
-//   age: 30
-// };
-// const func = () => {
-//   console.log('Hello');
-// };
-// map.set(obj, 123)
-//   .set(func, 'awesome')
-//   .set(false, true);
-
-// console.log(map);
-// console.log(map.get(func));
-// console.log(map.get(undefined));
-// // Для проверки наличия ключа используем метод has
-// console.log(map.has(null));
-// // Для определения длинны используем метод size
-// console.log(map.size);
-
-// const collectMap = new Map([
-//   ['hello', 'world'],
-//   ['year', 1812]
-// ]);
-
-// // Для удаления по свойству используем метод delete
-// collectMap.delete('year');
-// // Для удаления всех элементов используем метод clear
-// collectMap.clear();
-// console.log(collectMap);
-
-// // Для получения массива из объекта используем метод Array.from
-// const arr = Array.from(map);
-// console.log(arr);
-
-// // Для перебора коллекции можно использовать forEach или цикл for of
-// map.forEach((value, key) => {
-//   console.log(`key: ${key} value: ${value}`);
-// });
-// for (let [key, value] of map) {
-//   console.log(`key: ${key} value: ${value}`);
-// }
-
-// // Коллекция Set
-// const cars = new Set();
-
-// // cars.add('Niva');
-// // cars.add('Volvo');
-// // cars.add('BMW');
-// // cars.add('Niva');
-// // cars.add('Volvo');
-// // console.log(cars);
-// // console.log(cars.size);
-
-// cars.add('Niva');
-// cars.add('Volvo');
-// cars.add('BMW');
-// cars.add(NaN);
-// cars.add(undefined);
-// cars.add(null);
-// cars.add(() => {});
-
-// console.log(cars);
-// console.log(cars.size);
-// // Проверить наличие элемента в коллекции поможет метод has
-// console.log(cars.has('Niva'));
-// // Удаление элемента
-// cars.delete('BMW');
-// console.log(cars.has('BMW'));
-// // Удаление коллекции 
-// cars.clear();
-// console.log(cars);
-
-// Короткий синтаксис
-// const cars = new Set();
-
-// cars.add('Niva')
-//     .add('BMW')
-//     .add('mazda');
-// console.log(cars);
-// Можно добавлять при создании массива
-// const cars = new Set(['Mazda', 'Volvo', 'BMW']);
-// console.log(cars);
-// cars.forEach((elem) => {
+// // Перебор массива с помощью цикла for of
+// for (let elem of mix) {
 //   console.log(elem);
+// }
+// // Перебор массива с помощью цикла forEach (есть возможность обращаться к контексту вызова)
+// mix.forEach(function(item, index, arr) {
+//   console.table({item, index, arr});
+//   console.log(this);
+// }, number);
+// mix.forEach( item => console.log(item));
+
+// // Дальше пойдут методы, которые помимо перебора возвращают значения
+// // Исправляем в массиве с именами первую букву - большую, остальные буквы маленькие 
+// for ( let i = 0; i < names.length; i++) {
+//   names[i] = names[i][0].toUpperCase() + names[i].slice(1).toLowerCase();
+// }
+// console.log(names);
+// names.forEach(function(item, i, arr) {
+//   arr[i] = item[0].toUpperCase() + item.slice(1).toLowerCase();
 // });
-// // Применяем деструктуризацию
-// const [car1, car2] = cars;
-// console.log('car1: ', car1);
-// console.log('car2: ', car2);
-// // Переводим коллекцию в массив с помощью спред оператора
-// console.log([...cars]);
-// // Объединение коллекций
-// const newCars = new Set(['Niva', 'Toyota', 'Volvo']);
-// const allCars = new Set([...cars, ...newCars]);
-// console.log('allCars: ', allCars);
-// // Если значение добавляется, то в новую коллекция оно пропишеться только один раз
+// console.log(names);
+// Используем метод map() . Не меняя исходный массив возвращаем новый исправленный массив
+// Если массив будет задан через let, то вместо нового массива может перезаписать текущий
+// const correctName = names.map(function(item){
+//   return item[0].toUpperCase() + item.slice(1).toLowerCase();
+// });
+// const correctName = names.map(item => item[0].toUpperCase() + item.slice(1).toLowerCase());
+// console.log(names);
+// console.log(correctName);
 
-// Задание 1
-// const myLesson = new Set ([
-//   {lesson: 1, type: 'basic', points: 2},
-//   {lesson: 2, type: 'additional', points: 4},
-//   {lesson: 3, type: 'basic', points: 6},
-//   {lesson: 4, type: 'additional', points: 3},
-//   {lesson: 5, type: 'basic', points: 4},
-//   {lesson: 6, type: 'basic', points: 2},
-//   {lesson: 7, type: 'additional', points: 2},
-//   {lesson: 8, type: 'basic', points: 6},
-//   {lesson: 9, type: 'basic', points: 4},
-//   {lesson: 10, type: 'basic', points: 6},
-//   {lesson: 11, type: 'additional', points: 5}, 
-//   {lesson: 12, type: 'basic', points: 2}, 
-//   {lesson: 13, type: 'additional', points: 2}, 
-//   {lesson: 14, type: 'basic', points: 4},
-//   {lesson: 15, type: 'additional', points: 1},
-//   {lesson: 16, type: 'additional', points: 7},
-// ]);
-
-// myLesson.forEach((elem) => {
-//   if (elem.type === 'additional') {
-//     // Удаляем все объекты с типом additional
-//     myLesson.delete(elem);
-//   } else if (elem.type === 'basic') {
-//     // для basic очки уменьшаем в двое
-//     elem.points /= 2;
+// // Убираем из массива ненужные значения
+// let forWords = [];
+// for ( let i = 0; i < mix.length; i++) {
+//   if (typeof mix[i] === 'string' && isNaN(mix[i])) {
+//     forWords.push(mix[i]);
 //   }
+// }
+// console.log(forWords);
+// // Метод filter()
+// let filterWords = mix.filter(item => typeof item === 'string' && isNaN(item));
+// console.log(filterWords);
+// filterWords = mix.filter(item => 1);
+// console.log(filterWords);
+// filterWords = mix.filter(item => 0);
+// console.log(filterWords);
+// let positiveNumbers = number.filter((item) => item > 0);
+// console.log('positiveNumbers: ', positiveNumbers);
+// // Проверяем есть ли в массиве числа
+// let result = false;
+// for ( let i =0; i < mix.length; i++) {
+//   if(typeof mix[i] === 'number') {
+//     result = true;
+//     break;
+//   }
+// }
+// console.log(result);
+// // Тоже с помощью метода some()
+// let result2 = mix.some(function(item) {
+//   return typeof item === 'number';
 // });
-// console.log(myLesson);
+// console.log(result2);
+// // Проверка на элементы кроме чисел
+// let result3 = number.some(function(item) {
+//   return typeof item !== 'number';
+// });
+// console.log(result3);
+// // Проверка всех элементов на тип данных число с помощью метода every()
+// let result4 = number.every(function(item) {
+//   return typeof item === 'number';
+// });
+// console.log(result4);
+// result4 = badNum.every(function(item) {
+//   return typeof item === 'number';
+// });
+// console.log(result4);
+// // Для аккамулирования результата вычислений используем метод reduce()
+// // в аккамуллятор в зависимости от задачи можно передать свое число, а не 0
+// let sum2 = number.reduce(function(accumulator, item) {
+//   console.table({accumulator, item});
+//   return accumulator + item;
+// }, 0);
+// console.log(sum2);
+// // эта же задача с помощью цикла for()
+// let sum = 0;
+// for (let i = 0; i < number.length; i++) {
+//   sum += number[i];
+// }
+// console.log(sum);
+// // Метод reduceRight() перебирает элементы в обратном порядке
+// let sum3 = number.reduceRight(function(accumulator, item) {
+//   console.table({accumulator, item});
+//   return accumulator + item;
+// }, 0);
+// console.log(sum3);
+// // Перебираем двухмерный массив и сохраняем его в одномерный с помощью метода concat()
+// const arr = [[1, 2], [3, 4], [5,6]];
+// const res = arr.reduce((acc, item) => acc.concat(item), []);
+// console.log(res);
+// const res2 = arr.reduceRight((acc, item) => acc.concat(item));
+// console.log(res2);
 
-// Задание 2
-const myLesson = [
-  {lesson: 1, type: 'basic', points: 2},
-  {lesson: 2, type: 'additional', points: 4},
-  {lesson: 3, type: 'basic', points: 6},
-  {lesson: 4, type: 'additional', points: 3},
-  {lesson: 5, type: 'basic', points: 4},
-  {lesson: 6, type: 'basic', points: 2},
-  {lesson: 7, type: 'additional', points: 2},
-  {lesson: 8, type: 'basic', points: 6},
-  {lesson: 9, type: 'basic', points: 4},
-  {lesson: 10, type: 'basic', points: 6},
-  {lesson: 11, type: 'additional', points: 5}, 
-  {lesson: 12, type: 'basic', points: 2}, 
-  {lesson: 13, type: 'additional', points: 2}, 
-  {lesson: 14, type: 'basic', points: 4},
-  {lesson: 15, type: 'additional', points: 1},
-  {lesson: 16, type: 'additional', points: 7},
-];
+// Получение данных со строки JSON
+// В таком формате часто данные приходят с сервера
+// для получения данных используем функцию fetch(), а с помощью метода then() преобразуем данные в объект
+// fetch('./dbHeroes.json')
+//     .then(response => response.json())
+//     .then(data => console.log(data))
+//     .catch(err => console.error(err));
 
-console.log(myLesson);
-// Создаем коллекцию
-const myLesson2 = new Set ([...myLesson]);
-
-myLesson2.forEach((elem) => {
-  if (elem.type === 'additional') {
-    // Удаляем все объекты с типом additional
-    myLesson2.delete(elem);
-  } else if (elem.type === 'basic') {
-    // для basic очки уменьшаем в двое
-    elem.points /= 2;
-  }
-});
-// Переводим коллекцию снова в массив
-const newArr = [...myLesson2];
-console.log('newArr: ', newArr);
+// function practice(response) {
+//   let allHeroes = [];
+//   // С помощью метода map()
+//   allHeroes = response.map(item => item.name);
+//   // С помощью метода forEach()
+//   response.forEach(item => allHeroes.push(item.name));
+//   console.log(allHeroes);
+// }
